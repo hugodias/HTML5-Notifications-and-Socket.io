@@ -17,10 +17,17 @@ $(function() {
   var socket = io.connect();
   var notifier = new Notifier();
   var db = new DataBase();
-  
-  socket.on('news', function (data) {
-    console.log(data);
-  });  
+
+  socket.on('ready', function(data){
+    $('.input-email').val(data.email);
+    db.setEmail(data.email);
+    markAsDone('#step2');
+  })
+
+  socket.on('error', function(data){
+    $('#error').text(data.error);
+    $('#error').show();
+  })
 
   socket.on('message', function(data){
     if (!notifier.Notify(data.picture, data.title, data.message)) {
@@ -31,25 +38,23 @@ $(function() {
     }    
   });
 
-
   /** Verificacoes automaticas **/
   if (!notifier.HasSupport()) {
     $("#error").show();
     return;
   }
 
+  // Verifica se ja tem permissao
   if (notifier.checkPermission()){
     markAsDone('#step1');
   }
 
+  // Pega o email do localstorage e seta no socket.io
   if(db.getEmail()){
-    $('.input-email').val(db.getEmail());
-    markAsDone('#step2');
+    socket.emit('set email', db.getEmail());
   }
 
-
   /** Actions **/
-
   $("#request-permission").click(function() {
     $("#error").hide();
     notifier.RequestPermission();
@@ -57,15 +62,11 @@ $(function() {
   });  
 
   $('.setemail').click(function(){
-    db.setEmail($('.input-email').val());
-    markAsDone('#step2');
+    socket.emit('set email', $('.input-email').val());
   })  
 
   $("#notify-me").click(function() {
-    socket.emit('setemail', { email: db.getEmail() } );
+    socket.emit('communicate');
   });
-
-
-
 
 });
