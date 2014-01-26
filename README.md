@@ -2,7 +2,7 @@ HTML5-Notifications-and-Socket.io
 =================================
 
 
-Aplicação de exemplo explicada no vídeo: (http://youtu.be/HwSamlKBDn4)[http://youtu.be/HwSamlKBDn4]
+Aplicação de exemplo explicada no vídeo: [http://youtu.be/HwSamlKBDn4](http://youtu.be/HwSamlKBDn4)
 
 
 ### Requerimentos
