@@ -57,8 +57,11 @@ $(function() {
   /** Actions **/
   $("#request-permission").click(function() {
     $("#error").hide();
-    notifier.RequestPermission();
-    markAsDone('#step1');
+    notifier.RequestPermission(function(){
+      if(notifier.checkPermission()){
+        markAsDone('#step1');    
+      }
+    });    
   });  
 
   $('.setemail').click(function(){
