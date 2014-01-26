@@ -25,13 +25,13 @@ $(function() {
   })
 
   socket.on('error', function(data){
-    $('#error').text(data.error);
+    $('#error').children('div').text(data.error);
     $('#error').show();
   })
 
   socket.on('message', function(data){
     if (!notifier.Notify(data.picture, data.title, data.message)) {
-      $("#error").text('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
+      $("#error").children('div').text('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
       $("#error").show();
     } else {
       $("#error").hide();

@@ -44,7 +44,7 @@ io.sockets.on('connection', function (socket) {
 
 	socket.on('communicate', function(){
 		socket.get('email', function(err,email){
-			if(err){
+			if(!email){
 				socket.emit('error', {error: "Você precisa informar o email."});
 			} else {
 				socket.emit('message', {
