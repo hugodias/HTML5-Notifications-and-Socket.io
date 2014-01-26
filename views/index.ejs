@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/javascripts/notifier.js"></script>
+	<script src="/javascripts/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Chrome HTML5 Notifications</h2>
+				<hr>
+				<div id="error" style="display:none;">
+					This browser does not support desktop notifications. Try
+					<a href="http://www.google.com/chrome">Chrome</a> instead.
+				</div>
+
+				<div id="step1" >
+					<h4>Step 1 - Request permission</h4>
+					<a href="#" class="btn btn-primary" id="request-permission">Request Permission</a>
+				</div>
+				
+				<hr>
+				<div id="step2">
+					<h4>Step 2 - Enter your email</h4>
+					<input type="text" id="email" class="input-email">
+					<a href="#" class="setemail btn btn-primary btn-small"> Save </a>
+				</div>
+				<hr>
+
+				<p>
+					<h4>Step 3 - Communicate</h4>
+					<a href="#" class="btn btn-info" id="notify-me">Send </a>
+				</p>
+				
+			</div>
+		</div>
+	</div> 
+</body>
+</html>
